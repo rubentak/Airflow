@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import os
 
 # Define the kmeans_clustering() function
-def kmeans_clustering(file_path):
+def kmeans_clustering():
     # Load the dataset
     df = pd.read_csv('/Users/erictak/PycharmProjects/Airflow/tracklist.csv')
 
@@ -35,16 +35,16 @@ def kmeans_clustering(file_path):
 
     # Save the dataframe to csv
     save_path = os.path.join('/Users/erictak/airflow', 'tracklist_kmeans.csv')
-    df.to_json('save_path', orient='split', index=False)
+    df.to_csv('save_path', index=False)
 
-    return df
+    return print(df.head())
 
 #%%
 
 # Define the default_args for the DAG
 default_args = {
     'owner': 'your_name',  # Replace with your name
-    'start_date': datetime(2023, 1, 1),  # Replace with the start date of your DAG
+    'start_date': datetime(2023, 4, 11),  # Replace with the start date of your DAG
     'depends_on_past': False,
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
@@ -61,6 +61,5 @@ dag = DAG(
 kmeans_task = PythonOperator(
     task_id='kmeans_clustering_task',  # Replace with the name of the task
     python_callable=kmeans_clustering,  # Replace with the actual name of your function
-    op_args=['/path/to/tracklist.csv'],  # Replace with the correct file path to your CSV file
     dag=dag,
 )
