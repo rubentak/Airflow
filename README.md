@@ -66,7 +66,12 @@ Note: Depending on your specific use case and environment (AWS, local PC, hybrid
 
 Once you have completed the above steps, you will have a functional Airflow pipeline for an end-to-end ML workflow, including data ingestion, model training, model deployment, and monitoring.
 
+### steps so far:
 
+- created a kmeans ML function
+- defined the DAG in airflow
+- run the DAG in airflow
+- 
 
 ## references:
 
